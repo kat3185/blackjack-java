@@ -29,7 +29,7 @@ public class Player {
 
     public String printableHand() {
         String message = hand.showCards();
-        return String.format("%s %s", getName(), message);
+        return String.format("%s%s", getName(), message);
     }
 
     public int getHandValue() {
@@ -40,7 +40,7 @@ public class Player {
         hand.addCard(card);
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 

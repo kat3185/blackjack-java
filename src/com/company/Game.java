@@ -15,7 +15,6 @@ public class Game {
     public void play() {
         print("It's gamblin time!");
         dealHands();
-
         print(player.printableHand());
         print(player.printableHandValue());
 
@@ -35,7 +34,7 @@ public class Game {
         if (playerScore == computerScore) {
             outcome = "It's a tie! |-o-|";
         } else if (playerScore > computerScore) {
-            outcome = "Player wins!";
+            outcome = String.format("%s wins!", player.getName());
         } else {
             outcome = "Computer wins!";
         }
@@ -74,11 +73,12 @@ public class Game {
             while (!getStand() && !player.busts()) {
                 if (player.isComputer()) {
                     computerTakesTurn();
+                    announceHand();
                 } else {
                     chooseHitOrStand();
+                    announceHand();
                 }
             }
-            announceHand();
             if (player.busts()) {
                 print(player.bustMessage());
                 System.exit(0);
@@ -106,12 +106,12 @@ public class Game {
                 playerChoosesStand();
             } else if (input.equals("h")) {
                 deck.dealTo(player);
-                announceHand();
             }
         }
 
         private void computerTakesTurn() {
             while (player.getHandValue() < 17) {
+                print("Computer hits!");
                 deck.dealTo(player);
             }
             playerChoosesStand();
