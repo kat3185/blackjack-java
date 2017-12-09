@@ -1,8 +1,8 @@
 package com.company;
 
 public class Player {
-    public String name;
-    public boolean isComputer;
+    private String name;
+    private boolean isComputer;
     public Hand hand;
 
     public Player(String name, boolean isComputer) {

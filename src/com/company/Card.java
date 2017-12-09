@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Card {
-    public String suit;
-    public int rank;
-    public static Map<Integer, String> stringRanker = new HashMap<Integer, String>() {{
+    private String suit;
+    private int rank;
+    private static Map<Integer, String> stringRanker = new HashMap<Integer, String>() {{
         put(1, "A");
         put(2, "2");
         put(3, "3");
@@ -31,11 +31,11 @@ public class Card {
         this.rank = rank;
     }
 
-    public int getRank() {
+    private int getRank() {
         return rank;
     }
 
-    public String getSuit() {
+    private String getSuit() {
         return suit;
     }
 
@@ -47,7 +47,7 @@ public class Card {
         }
     }
 
-    public boolean isFacecard() {
+    private boolean isFacecard() {
         return Arrays.asList(11, 12, 13).contains(getRank());
     }
 

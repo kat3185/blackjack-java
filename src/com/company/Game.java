@@ -2,9 +2,9 @@ package com.company;
 import java.util.Scanner;
 
 public class Game {
-    public Player player;
-    public Player computer;
-    public Deck deck;
+    private Player player;
+    private Player computer;
+    private Deck deck;
 
     public Game() {
         this.player = inputPlayerName();
@@ -73,9 +73,9 @@ public class Game {
     }
 
     private class Turn {
-        public Player player;
-        public boolean stand;
-        public Turn(Player player) {
+        private Player player;
+        private boolean stand;
+        private Turn(Player player) {
             this.player = player;
             this.stand = false;
         }
@@ -90,19 +90,15 @@ public class Game {
             }
         }
 
-        public void setStand(boolean value) {
-            this.stand = value;
-        }
-
-        public boolean getStand() {
+        private boolean getStand() {
             return this.stand;
         }
 
-        public void playerChoosesStand() {
-            setStand(true);
+        private void playerChoosesStand() {
+            this.stand = true;
         }
 
-        public void chooseHitOrStand() {
+        private void chooseHitOrStand() {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Hit or stand? (h/s)");
             String input = scanner.next().toLowerCase();
@@ -115,7 +111,7 @@ public class Game {
             }
         }
 
-        public void computerTakesTurn() {
+        private void computerTakesTurn() {
             while (player.hand.getValue() < 17) {
                 deck.dealTo(player);
             }
