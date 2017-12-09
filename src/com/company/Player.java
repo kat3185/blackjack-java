@@ -5,7 +5,7 @@ public class Player {
     private boolean isComputer;
     public Hand hand;
 
-    public Player(String name, boolean isComputer) {
+    Player(String name, boolean isComputer) {
         this.name = name;
         this.isComputer = isComputer;
         this.hand = new Hand();

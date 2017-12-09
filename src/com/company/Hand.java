@@ -1,14 +1,11 @@
 package com.company;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
     private List<Card> cards = new ArrayList<Card>();
 
-    public Hand(){
-
-    }
+    Hand() { }
 
     public List<Card> getCards() {
         return cards;

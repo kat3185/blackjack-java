@@ -6,7 +6,7 @@ public class Game {
     private Player computer;
     private Deck deck;
 
-    public Game() {
+    Game() {
         this.player = inputPlayerName();
         this.computer = new Player("Computer", true);
         this.deck = new Deck();
@@ -80,7 +80,7 @@ public class Game {
             this.stand = false;
         }
 
-        public void take() {
+        void take() {
             while (!getStand() && !player.busts()) {
                 if (player.isComputer()) {
                     computerTakesTurn();

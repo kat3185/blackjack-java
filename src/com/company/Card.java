@@ -1,8 +1,5 @@
 package com.company;
 import java.util.Arrays;
-import java.util.List;
-import java.util.ArrayList;
-import com.sun.deploy.util.ArrayUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,17 +23,9 @@ public class Card {
         put(13, "K");
     }};
 
-    public Card(String suit, int rank) {
+    Card(String suit, int rank) {
         this.suit = suit;
         this.rank = rank;
-    }
-
-    private int getRank() {
-        return rank;
-    }
-
-    private String getSuit() {
-        return suit;
     }
 
     public int getValue() {
@@ -45,10 +34,6 @@ public class Card {
         } else {
             return getRank();
         }
-    }
-
-    private boolean isFacecard() {
-        return Arrays.asList(11, 12, 13).contains(getRank());
     }
 
     public boolean isAce() {
@@ -61,6 +46,18 @@ public class Card {
         summary.append(getSuit());
         summary.append(", ");
         return String.valueOf(summary);
+    }
+
+    private int getRank() {
+        return rank;
+    }
+
+    private String getSuit() {
+        return suit;
+    }
+
+    private boolean isFacecard() {
+        return Arrays.asList(11, 12, 13).contains(getRank());
     }
 
     private String stringifiedRank() {
