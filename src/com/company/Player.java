@@ -14,4 +14,12 @@ public class Player {
     public String showHand() {
         return hand.showCards();
     }
+
+    public String handValue() {
+        return String.valueOf(hand.getValue());
+    }
+
+    public boolean busts() {
+        return hand.getValue() > 21;
+    }
 }

@@ -37,6 +37,7 @@ public class Hand {
     public String showCards() {
         StringBuilder cardsToPrint;
         cardsToPrint = new StringBuilder();
+        cardsToPrint.append("Your hand contains:\n");
         for(Card card : cards) {
             cardsToPrint.append(card.printableSummary());
         }

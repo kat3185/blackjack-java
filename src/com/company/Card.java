@@ -43,27 +43,27 @@ public class Card {
         if (isFacecard()) {
             return 10;
         } else {
-            return this.rank;
+            return getRank();
         }
     }
 
     public boolean isFacecard() {
-        return Arrays.asList(11, 12, 13).contains(this.rank);
+        return Arrays.asList(11, 12, 13).contains(getRank());
     }
 
     public boolean isAce() {
-        return this.rank == 1;
+        return getRank() == 1;
     }
 
     public String printableSummary() {
         StringBuilder summary = new StringBuilder();
-        summary.append(suit);
+        summary.append(getSuit());
         summary.append(stringifiedRank());
         summary.append("\n");
         return String.valueOf(summary);
     }
 
     private String stringifiedRank() {
-        return stringRanker.get(rank);
+        return stringRanker.get(getRank());
     }
 }
