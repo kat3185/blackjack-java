@@ -59,7 +59,7 @@ public class Card {
         StringBuilder summary = new StringBuilder();
         summary.append(getSuit());
         summary.append(stringifiedRank());
-        summary.append("\n");
+        summary.append(", ");
         return String.valueOf(summary);
     }
 

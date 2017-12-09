@@ -21,20 +21,42 @@ public class Game {
 
         Turn playerTurn = new Turn(player);
         playerTurn.take();
+        printHandValue(player);
         if (player.busts()) {
             System.out.println("You loooose!  Sucka.");
-        } else {
-            printHandValue(player);
+            System.exit(0);
         }
 
+        Turn computerTurn = new Turn(computer);
+        computerTurn.take();
+        printHandValue(computer);
+        if (computer.busts()) {
+            System.out.println("Computer busts!  You win!");
+            System.exit(0);
+        }
 
+        printOutcome();
 
 //        System.out.println(this.deck.showCards());
 //        System.out.println(this.deck.countCards());
     }
 
+    private void printOutcome() {
+        int playerScore = player.hand.getValue();
+        int computerScore = computer.hand.getValue();
+        String outcome;
+        if (playerScore == computerScore) {
+            outcome = "It's a tie! |-o-|";
+        } else if (playerScore > computerScore) {
+            outcome = "Player wins!";
+        } else {
+            outcome = "Computer wins!";
+        }
+        System.out.println(outcome);
+    }
+
     private void printHandValue(Player person) {
-        System.out.println(String.format("Your total hand value is: %s", person.handValue()));
+        System.out.println(String.format("%s's total hand value is: %s", person.getName(), person.handValue()));
     }
 
     private void dealHands() {
@@ -63,7 +85,11 @@ public class Game {
 
         public void take() {
             while (!getStand() && !player.busts()) {
-                hitOrStand();
+                if (player.isComputer()) {
+                    computerTakesTurn();
+                } else {
+                    chooseHitOrStand();
+                }
             }
         }
 
@@ -79,7 +105,7 @@ public class Game {
             setStand(true);
         }
 
-        public void hitOrStand() {
+        public void chooseHitOrStand() {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Hit or stand? (h/s)");
             String input = scanner.next().toLowerCase();
@@ -90,6 +116,14 @@ public class Game {
                 System.out.println(player.showHand());
                 System.out.println(String.format("Your total hand value is: %s", player.handValue()));
             }
+        }
+
+        public void computerTakesTurn() {
+            while (player.hand.getValue() < 17) {
+                deck.dealTo(player);
+            }
+            System.out.println(player.showHand());
+            playerChoosesStand();
         }
     }
 }

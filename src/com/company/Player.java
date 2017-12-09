@@ -11,8 +11,17 @@ public class Player {
         this.hand = new Hand();
     }
 
+    public boolean isComputer() {
+        return isComputer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String showHand() {
-        return hand.showCards();
+        String message = hand.showCards();
+        return String.format("%s %s", getName(), message);
     }
 
     public String handValue() {
