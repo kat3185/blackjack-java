@@ -26,10 +26,7 @@ public class Hand {
             if (card.isAce()) {
                 hasAce = true;
             }
-            System.out.println(card.printableSummary());
-            System.out.println(card.getValue());
             value += card.getValue();
-            System.out.println(value);
         }
         if (hasAce && value < 12) {
             value += 10;
@@ -40,7 +37,7 @@ public class Hand {
     public String showCards() {
         StringBuilder cardsToPrint;
         cardsToPrint = new StringBuilder();
-        cardsToPrint.append("hand contains:\n");
+        cardsToPrint.append("'s hand contains:\n");
         for(Card card : cards) {
             cardsToPrint.append(card.printableSummary());
         }

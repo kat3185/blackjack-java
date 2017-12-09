@@ -13,7 +13,7 @@ public class Card {
     public static Map<Integer, String> stringRanker = new HashMap<Integer, String>() {{
         put(1, "A");
         put(2, "2");
-        put(3, "4");
+        put(3, "3");
         put(4, "4");
         put(5, "5");
         put(6, "6");
@@ -57,8 +57,8 @@ public class Card {
 
     public String printableSummary() {
         StringBuilder summary = new StringBuilder();
-        summary.append(getSuit());
         summary.append(stringifiedRank());
+        summary.append(getSuit());
         summary.append(", ");
         return String.valueOf(summary);
     }

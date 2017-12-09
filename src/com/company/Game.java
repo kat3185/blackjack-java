@@ -36,9 +36,6 @@ public class Game {
         }
 
         printOutcome();
-
-//        System.out.println(this.deck.showCards());
-//        System.out.println(this.deck.countCards());
     }
 
     private void printOutcome() {
