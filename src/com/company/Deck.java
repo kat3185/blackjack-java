@@ -7,6 +7,15 @@ public class Deck {
     private List<Card> cards = new ArrayList<Card>();
 
     Deck() {
+        this.cards = populateCards();
+    }
+
+    public void dealTo(Player player) {
+        Card card = cards.remove(cards.size() - 1);
+        player.receiveCard(card);
+    }
+
+    private List<Card> populateCards() {
         for(String suit : suits)
         {
             for(int rank : ranks)
@@ -16,28 +25,6 @@ public class Deck {
             }
         }
         Collections.shuffle(cards);
-        this.cards = cards;
-    }
-
-    public List<Card> getCards() {
         return cards;
-    }
-
-    public void dealTo(Player player) {
-        Card card = cards.remove(cards.size() - 1);
-        player.hand.addCard(card);
-    }
-
-    public int countCards() {
-        return this.cards.size();
-    }
-
-    public String showCards() {
-        StringBuilder cardsToPrint;
-        cardsToPrint = new StringBuilder();
-        for(Card card : cards) {
-            cardsToPrint.append(card.printableSummary());
-        }
-        return cardsToPrint.toString();
     }
 }

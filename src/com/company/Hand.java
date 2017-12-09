@@ -7,10 +7,6 @@ public class Hand {
 
     Hand() { }
 
-    public List<Card> getCards() {
-        return cards;
-    }
-
     public void addCard(Card card) {
         this.cards.add(card);
     }

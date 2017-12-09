@@ -13,34 +13,24 @@ public class Game {
     }
 
     public void play() {
-        System.out.println("It's gamblin time!");
+        print("It's gamblin time!");
         dealHands();
 
-        System.out.println(player.showHand());
-        printHandValue(player);
+        print(player.printableHand());
+        print(player.printableHandValue());
 
         Turn playerTurn = new Turn(player);
         playerTurn.take();
-        printHandValue(player);
-        if (player.busts()) {
-            System.out.println("You loooose!  Sucka.");
-            System.exit(0);
-        }
 
         Turn computerTurn = new Turn(computer);
         computerTurn.take();
-        printHandValue(computer);
-        if (computer.busts()) {
-            System.out.println("Computer busts!  You win!");
-            System.exit(0);
-        }
 
         printOutcome();
     }
 
     private void printOutcome() {
-        int playerScore = player.hand.getValue();
-        int computerScore = computer.hand.getValue();
+        int playerScore = player.getHandValue();
+        int computerScore = computer.getHandValue();
         String outcome;
         if (playerScore == computerScore) {
             outcome = "It's a tie! |-o-|";
@@ -49,11 +39,11 @@ public class Game {
         } else {
             outcome = "Computer wins!";
         }
-        System.out.println(outcome);
+        print(outcome);
     }
 
-    private void printHandValue(Player person) {
-        System.out.println(String.format("%s's total hand value is: %s", person.getName(), person.handValue()));
+    private void print(String value) {
+        System.out.println(value);
     }
 
     private void dealHands() {
@@ -65,10 +55,10 @@ public class Game {
 
     private Player inputPlayerName() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter your name: ");
+        print("Please enter your name: ");
         String playerName = scanner.next();
         String welcomeMessage = String.format("Thank you for playing Blackjack, %s", playerName);
-        System.out.println(welcomeMessage);
+        print(welcomeMessage);
         return new Player(playerName, false);
     }
 
@@ -88,6 +78,16 @@ public class Game {
                     chooseHitOrStand();
                 }
             }
+            announceHand();
+            if (player.busts()) {
+                print(player.bustMessage());
+                System.exit(0);
+            }
+        }
+
+        private void announceHand() {
+            print(player.printableHand());
+            print(player.printableHandValue());
         }
 
         private boolean getStand() {
@@ -100,22 +100,20 @@ public class Game {
 
         private void chooseHitOrStand() {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Hit or stand? (h/s)");
+            print("Hit or stand? (h/s)");
             String input = scanner.next().toLowerCase();
             if (input.equals("s")) {
                 playerChoosesStand();
             } else if (input.equals("h")) {
                 deck.dealTo(player);
-                System.out.println(player.showHand());
-                System.out.println(String.format("Your total hand value is: %s", player.handValue()));
+                announceHand();
             }
         }
 
         private void computerTakesTurn() {
-            while (player.hand.getValue() < 17) {
+            while (player.getHandValue() < 17) {
                 deck.dealTo(player);
             }
-            System.out.println(player.showHand());
             playerChoosesStand();
         }
     }

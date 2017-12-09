@@ -3,7 +3,7 @@ package com.company;
 public class Player {
     private String name;
     private boolean isComputer;
-    public Hand hand;
+    private Hand hand;
 
     Player(String name, boolean isComputer) {
         this.name = name;
@@ -15,20 +15,36 @@ public class Player {
         return isComputer;
     }
 
-    public String getName() {
-        return name;
+    public boolean busts() {
+        return getHandValue() > 21;
     }
 
-    public String showHand() {
+    public String bustMessage() {
+        return String.format("%s busts!  They looooose!", getName());
+    }
+
+    public String printableHandValue() {
+        return String.format("%s's total hand value is: %s", getName(), handValue());
+    }
+
+    public String printableHand() {
         String message = hand.showCards();
         return String.format("%s %s", getName(), message);
     }
 
-    public String handValue() {
-        return String.valueOf(hand.getValue());
+    public int getHandValue() {
+        return hand.getValue();
     }
 
-    public boolean busts() {
-        return hand.getValue() > 21;
+    public void receiveCard(Card card) {
+        hand.addCard(card);
+    }
+
+    private String getName() {
+        return name;
+    }
+
+    private String handValue() {
+        return String.valueOf(getHandValue());
     }
 }
